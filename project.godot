@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Platformer clone_Brackeys"
+config/name="SuperRoot"
 run/main_scene="uid://dhalytpdu1ar5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=4
+window/stretch/mode="canvas_items"
 
 [input]
 

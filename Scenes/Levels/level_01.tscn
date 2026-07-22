@@ -188,7 +188,7 @@ tile_set = SubResource("TileSet_ge2ro")
 [node name="Gameplay" type="Node2D" parent="."]
 
 [node name="SpawnPoint" type="Marker2D" parent="Gameplay"]
-position = Vector2(1496, -96)
+position = Vector2(-110, 6)
 
 [node name="Killzone" parent="Gameplay" instance=ExtResource("5_mb1if")]
 
@@ -199,6 +199,13 @@ shape = SubResource("WorldBoundaryShape2D_flehy")
 [node name="Gold" type="Node2D" parent="Gameplay"]
 
 [node name="Gold" parent="Gameplay/Gold" instance=ExtResource("2_dbq10")]
+position = Vector2(914, -113)
+
+[node name="Gold2" parent="Gameplay/Gold" instance=ExtResource("2_dbq10")]
+position = Vector2(839, -113)
+
+[node name="Gold3" parent="Gameplay/Gold" instance=ExtResource("2_dbq10")]
+position = Vector2(992, -113)
 
 [node name="Goal" parent="Gameplay" instance=ExtResource("4_mb1if")]
-position = Vector2(1640, -64)
+position = Vector2(2246, -224)

@@ -13,9 +13,9 @@ script = ExtResource("1_kry3j")
 position = Vector2(80, -8)
 
 [node name="Camera" type="Camera2D" parent="Player"]
-position = Vector2(-1.52588e-05, 0)
+position = Vector2(0, -50)
 scale = Vector2(2.28571, 1)
-zoom = Vector2(2.355, 2.355)
+zoom = Vector2(1.585, 1.585)
 limit_bottom = 300
 position_smoothing_enabled = true
 
