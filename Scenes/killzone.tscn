@@ -8,6 +8,9 @@ script/source = "extends Area2D
 
 #@onready var timer: Timer = $Timer
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
+@onready var music: AudioStreamPlayer2D = get_tree().get_first_node_in_group(\"music\")
+
+#@export var music: AudioStreamPlayer2D
 
 
 
@@ -15,13 +18,14 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(\"jump\") and %GameOverScreen.visible:
 		get_tree().reload_current_scene()
 		Engine.time_scale = 1
+		music.stop()
+		music.play()
 		
 func _on_body_entered(body: Node2D) -> void:
 	#timer.start()
 	$DeathSound.play()
 	%GameOverScreen.visible = true
 	Engine.time_scale = 0.1
-	
 
 
 #func _on_timer_timeout() -> void:
