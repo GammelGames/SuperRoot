@@ -8,4 +8,5 @@
 stream = ExtResource("1_fbmny")
 volume_db = -4.115
 autoplay = true
+max_distance = 1e+14
 attenuation = 1e-05
