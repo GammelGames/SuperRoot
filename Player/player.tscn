@@ -1,8 +1,8 @@
 [gd_scene load_steps=29 format=3 uid="uid://ckmkie2emproq"]
 
 [ext_resource type="Texture2D" uid="uid://cahqxh3p35hsf" path="res://Animations/Sprite - Zwerg-Idle.png" id="1_btcbx"]
-[ext_resource type="Texture2D" uid="uid://0y28tepujr68" path="res://Animations/Zwerg-Animationen.png" id="1_gwnis"]
 [ext_resource type="AudioStream" uid="uid://l46t1frsg813" path="res://Sounds/Sound Effects/jump sound cartoon.mp3" id="2_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://t5pi6ags8p83" path="res://Animations/Zwerg-Animationen.png" id="2_btcbx"]
 
 [sub_resource type="GDScript" id="GDScript_l8h54"]
 script/source = "extends CharacterBody2D
@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play(\"Root Jump\")
 		var jump_frame = clamp(round(remap(velocity.y, JUMP_VELOCITY, MAX_FALLING_SPEED, 0, 7)), 0, 7)
 		$AnimatedSprite2D.frame = jump_frame
-		print(jump_frame)
+		
 		
 		
 	# Sprite in richtige Richtung gucken lassen
@@ -159,36 +159,36 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("1_btcbx")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pisgm"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(0, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pisgm"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ygp"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(64, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1ygp"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28un"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(128, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o28un"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_n471f"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(192, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n471f"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7emwf"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(256, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7emwf"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hshwv"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(320, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hshwv"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpjlu"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(384, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpjlu"]
-atlas = ExtResource("1_gwnis")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
+atlas = ExtResource("2_btcbx")
 region = Rect2(448, 64, 64, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8mwp6"]
@@ -250,9 +250,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_btcbx")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_pisgm")
 }, {
 "duration": 1.0,
@@ -272,6 +269,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gpjlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mwp6")
 }],
 "loop": true,
 "name": &"Root Jump",
@@ -323,7 +323,6 @@ position = Vector2(2.38419e-07, -2)
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 animation = &"Root Jump"
 autoplay = "Root Idle"
-frame = 7
 frame_progress = 0.459697
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
