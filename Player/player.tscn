@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ckmkie2emproq"]
+[gd_scene load_steps=32 format=3 uid="uid://ckmkie2emproq"]
 
 [ext_resource type="Texture2D" uid="uid://cahqxh3p35hsf" path="res://Animations/Sprite - Zwerg-Idle.png" id="1_btcbx"]
 [ext_resource type="AudioStream" uid="uid://l46t1frsg813" path="res://Sounds/Sound Effects/jump sound cartoon.mp3" id="2_4ntmi"]
@@ -72,16 +72,29 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.x != 0 and is_on_floor():
 		$AnimatedSprite2D.play(\"Root Running\")
-	else: $AnimatedSprite2D.play(\"Root Idle\")
+	if velocity.x == 0 and is_on_floor():
+		$AnimatedSprite2D.play(\"Root Idle\")
 	
 	
 	# Jump Animation
 	if not is_on_floor():
-		$AnimatedSprite2D.play(\"Root Jump\")
-		var jump_frame = clamp(round(remap(velocity.y, JUMP_VELOCITY, MAX_FALLING_SPEED, 0, 7)), 0, 7)
-		$AnimatedSprite2D.frame = jump_frame
+		if velocity.y >= MAX_FALLING_SPEED:
+			if $AnimatedSprite2D.animation != \"Root Fall Max Speed\":
+				$AnimatedSprite2D.play(\"Root Fall Max Speed\")
+		else:
+			if $AnimatedSprite2D.animation != \"Root Jump\":
+				$AnimatedSprite2D.play(\"Root Jump\")
+
+			var jump_frame = clamp(
+				round(remap(velocity.y, JUMP_VELOCITY, MAX_FALLING_SPEED, 0, 7)),
+				0,
+				7
+			)
+
+			$AnimatedSprite2D.frame = jump_frame
 		
 		
+	print(velocity.y)
 		
 	# Sprite in richtige Richtung gucken lassen
 	if velocity.x > 0:
@@ -138,6 +151,18 @@ func _on_coyote_time_timeout() -> void:
 		jump_count = 1
 	else: jump_count = 2
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btcbx"]
+atlas = ExtResource("2_btcbx")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qemgg"]
+atlas = ExtResource("2_btcbx")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8viyr"]
+atlas = ExtResource("2_btcbx")
+region = Rect2(320, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gwnis"]
 atlas = ExtResource("1_btcbx")
@@ -228,6 +253,23 @@ region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btcbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qemgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8viyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qemgg")
+}],
+"loop": true,
+"name": &"Root Fall Max Speed",
+"speed": 13.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gwnis")
@@ -321,9 +363,9 @@ script = SubResource("GDScript_l8h54")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2.38419e-07, -2)
 sprite_frames = SubResource("SpriteFrames_4ntmi")
-animation = &"Root Jump"
+animation = &"Root Fall Max Speed"
 autoplay = "Root Idle"
-frame_progress = 0.459697
+frame_progress = 0.396921
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5.96046e-08, 0)
